@@ -12,7 +12,7 @@ class ArticleDetail extends React.Component {
   componentDidMount() {
     const articleID = this.props.match.params.articleID;
     axios
-      .get(`https://lucas-beemer.herokuapp.com/api/${articleID}`)
+      .get(`https://lucas-beemer.herokuapp.com/api/${articleID}/`)
       .then(res => {
         this.setState({
           article: res.data
@@ -21,10 +21,15 @@ class ArticleDetail extends React.Component {
   }
 
   handleDelete = event => {
+    event.preventDefault();
     const articleID = this.props.match.params.articleID;
-    axios.delete(`https://lucas-beemer.herokuapp.com/api/${articleID}`);
-    this.props.history.push("/");
-    this.forceUpdate();
+    axios
+      .delete(`https://lucas-beemer.herokuapp.com/api/${articleID}/`)
+      .then(res => {
+        if (res.status === 204) {
+          this.props.history.push("/");
+        }
+      });
   };
 
   render() {
@@ -34,6 +39,7 @@ class ArticleDetail extends React.Component {
           <p>{this.state.article.content}</p>
         </Card>
         <CustomForm
+          {...this.props}
           requestType="put"
           articleID={this.props.match.params.articleID}
           btnText="Update"

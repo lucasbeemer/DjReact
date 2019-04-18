@@ -24,9 +24,9 @@ const Articles = props => {
         <List.Item
           key={item.title}
           actions={[
-            <IconText type="star-o" text="156" />,
-            <IconText type="like-o" text="156" />,
-            <IconText type="message" text="2" />
+            <IconText type="star-o" text="87" />,
+            <IconText type="like-o" text="136" />,
+            <IconText type="message" text="5" />
           ]}
           extra={
             <img
@@ -38,7 +38,7 @@ const Articles = props => {
         >
           <List.Item.Meta
             avatar={<Avatar src={item.avatar} />}
-            title={<a href={`/${item.id}`}>{item.title}</a>}
+            title={<a href={`/articles/${item.id}`}>{item.title}</a>}
             description={item.description}
           />
           {item.content}
