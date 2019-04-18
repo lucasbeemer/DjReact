@@ -1,7 +1,8 @@
 import React from "react";
 import axios from "axios";
-
+import { connect } from "react-redux";
 import { Button, Card } from "antd";
+
 import CustomForm from "../components/Form";
 
 class ArticleDetail extends React.Component {
@@ -9,27 +10,36 @@ class ArticleDetail extends React.Component {
     article: {}
   };
 
-  componentDidMount() {
-    const articleID = this.props.match.params.articleID;
-    axios
-      .get(`https://lucas-beemer.herokuapp.com/api/${articleID}/`)
-      .then(res => {
-        this.setState({
-          article: res.data
+  componentWillReceiveProps(newProps) {
+    if (newProps.token) {
+      axios.defaults.headers = {
+        "Content-type": "application/json",
+        Authorization: newProps.token
+      };
+      const articleID = this.props.match.params.articleID;
+      axios
+        .get(`https://lucas-beemer.herokuapp.com/api/${articleID}/`)
+        .then(res => {
+          this.setState({
+            article: res.data
+          });
         });
-      });
+    }
   }
 
   handleDelete = event => {
-    event.preventDefault();
-    const articleID = this.props.match.params.articleID;
-    axios
-      .delete(`https://lucas-beemer.herokuapp.com/api/${articleID}/`)
-      .then(res => {
-        if (res.status === 204) {
-          this.props.history.push("/");
-        }
-      });
+    if (this.props.token !== null) {
+      const articleID = this.props.match.params.articleID;
+      axios.defaults.headers = {
+        "Content-type": "application/json",
+        Authorization: this.props.token
+      };
+      axios.delete(`https://lucas-beemer.herokuapp.com/api/${articleID}/`);
+      this.props.history.push("/");
+      this.forceUpdate();
+    } else {
+      // show some message
+    }
   };
 
   render() {
@@ -54,4 +64,10 @@ class ArticleDetail extends React.Component {
   }
 }
 
-export default ArticleDetail;
+const mapStateToProps = state => {
+  return {
+    token: state.token
+  };
+};
+
+export default connect(mapStateToProps)(ArticleDetail);

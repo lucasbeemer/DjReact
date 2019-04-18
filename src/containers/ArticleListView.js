@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import { connect } from "react-redux";
 
 // COMPONENTS
 import Articles from "../components/Article";
@@ -10,12 +11,18 @@ class ArticleList extends React.Component {
     articles: []
   };
 
-  componentDidMount() {
-    axios.get("https://lucas-beemer.herokuapp.com/api/").then(res => {
-      this.setState({
-        articles: res.data
+  componentWillReceiveProps(newProps) {
+    if (newProps.token) {
+      axios.defaults.headers = {
+        "Content-type": "application/json",
+        Authorization: newProps.token
+      };
+      axios.get("https://lucas-beemer.herokuapp.com/api/").then(res => {
+        this.setState({
+          articles: res.data
+        });
       });
-    });
+    }
   }
 
   render() {
@@ -30,4 +37,10 @@ class ArticleList extends React.Component {
   }
 }
 
-export default ArticleList;
+const mapStateToProps = state => {
+  return {
+    token: state.token
+  };
+};
+
+export default connect(mapStateToProps)(ArticleList);
