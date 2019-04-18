@@ -24,9 +24,9 @@ const Articles = props => {
         <List.Item
           key={item.title}
           actions={[
-            <IconText type="star-o" text="87" />,
-            <IconText type="like-o" text="136" />,
-            <IconText type="message" text="5" />
+            <IconText type="star-o" text="" />,
+            <IconText type="like-o" text="" />,
+            <IconText type="message" text="" />
           ]}
           extra={
             <img
