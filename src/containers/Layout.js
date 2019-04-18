@@ -6,6 +6,11 @@ import * as actions from "../store/actions/auth";
 
 const { Header, Content, Footer } = Layout;
 
+// function for refresh
+function refreshPage() {
+  window.location.reload();
+}
+
 class CustomLayout extends React.Component {
   render() {
     return (
@@ -23,7 +28,9 @@ class CustomLayout extends React.Component {
             </Menu.Item>
             {this.props.isAuthenticated ? (
               <Menu.Item key="1" onClick={this.props.logout}>
-                <Link to="/">Logout</Link>
+                <Link to="/" onClick={refreshPage}>
+                  Logout
+                </Link>
               </Menu.Item>
             ) : (
               <Menu.Item key="1">
@@ -34,12 +41,12 @@ class CustomLayout extends React.Component {
         </Header>
         <Content style={{ padding: "0 50px" }}>
           <Breadcrumb style={{ margin: "16px 0" }}>
-            <Breadcrumb.Item>
+            {/* <Breadcrumb.Item>
               <Link to="/">Home</Link>
             </Breadcrumb.Item>
             <Breadcrumb.Item>
               <Link to="/">List</Link>
-            </Breadcrumb.Item>
+            </Breadcrumb.Item> */}
           </Breadcrumb>
           <div style={{ background: "#fff", padding: 24, minHeight: 280 }}>
             {this.props.children}

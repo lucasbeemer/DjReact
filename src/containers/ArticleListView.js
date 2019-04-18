@@ -21,6 +21,7 @@ class ArticleList extends React.Component {
         this.setState({
           articles: res.data
         });
+        this.props.history.push("/");
       });
     }
   }
