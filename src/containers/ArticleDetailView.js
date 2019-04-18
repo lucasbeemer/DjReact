@@ -11,16 +11,18 @@ class ArticleDetail extends React.Component {
 
   componentDidMount() {
     const articleID = this.props.match.params.articleID;
-    axios.get(`http://127.0.0.1:8000/api/${articleID}`).then(res => {
-      this.setState({
-        article: res.data
+    axios
+      .get(`https://lucas-beemer.herokuapp.com/api/${articleID}`)
+      .then(res => {
+        this.setState({
+          article: res.data
+        });
       });
-    });
   }
 
   handleDelete = event => {
     const articleID = this.props.match.params.articleID;
-    axios.delete(`http://127.0.0.1:8000/api/${articleID}`);
+    axios.delete(`https://lucas-beemer.herokuapp.com/api/${articleID}`);
     this.props.history.push("/");
     this.forceUpdate();
   };

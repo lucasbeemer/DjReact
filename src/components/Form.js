@@ -12,7 +12,7 @@ class CustomForm extends React.Component {
     switch (requestType) {
       case "post":
         return axios
-          .post("http://127.0.0.1:8000/api/", {
+          .post("https://lucas-beemer.herokuapp.com/api/", {
             title: title,
             content: content
           })
@@ -20,7 +20,7 @@ class CustomForm extends React.Component {
           .catch(error => console.log(error));
       case "put":
         return axios
-          .put(`http://127.0.0.1:8000/api/${articleID}/`, {
+          .put(`https://lucas-beemer.herokuapp.com/api/${articleID}/`, {
             title: title,
             content: content
           })

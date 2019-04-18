@@ -11,7 +11,7 @@ class ArticleList extends React.Component {
   };
 
   componentDidMount() {
-    axios.get("http://127.0.0.1:8000/api/").then(res => {
+    axios.get("https://lucas-beemer.herokuapp.com/api/").then(res => {
       this.setState({
         articles: res.data
       });
