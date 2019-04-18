@@ -13,7 +13,7 @@ SECRET_KEY = '*z#@8h$jv+0n@(z+u)_-^v4x-o9dtxd=rg2sso)3+vj-$^9gy3'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['lucas-beemer.herokuapp.com']
+ALLOWED_HOSTS = ['lucas-beemer.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
@@ -56,7 +56,7 @@ ROOT_URLCONF = 'djreact.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'build')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
