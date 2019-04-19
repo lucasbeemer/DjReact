@@ -31,7 +31,7 @@ class ArticleList extends React.Component {
       <div>
         <Articles data={this.state.articles} />
         <br />
-        <h2>Create an article</h2>
+        <h2>Create a post</h2>
         <CustomForm requestType="post" articleID={null} btnText="Create" />
       </div>
     );
