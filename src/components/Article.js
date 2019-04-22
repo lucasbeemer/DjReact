@@ -42,6 +42,7 @@ const Articles = props => {
             description={item.description}
           />
           {item.content}
+          {item.date}
         </List.Item>
       )}
     />

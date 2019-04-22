@@ -7,6 +7,7 @@ const FormItem = Form.Item;
 class CustomForm extends React.Component {
   handleFormSubmit = (event, requestType, articleID) => {
     const title = event.target.elements.title.value;
+    const date = event.target.elements.date.value;
     const content = event.target.elements.content.value;
 
     switch (requestType) {
@@ -14,6 +15,7 @@ class CustomForm extends React.Component {
         return axios
           .post("https://lucas-beemer.herokuapp.com/api/", {
             title: title,
+            date: date,
             content: content
           })
           .then(res => console.log(res))
@@ -22,6 +24,7 @@ class CustomForm extends React.Component {
         return axios
           .put(`https://lucas-beemer.herokuapp.com/api/${articleID}/`, {
             title: title,
+            date: date,
             content: content
           })
           .then(res => console.log(res))

@@ -47,6 +47,7 @@ class ArticleDetail extends React.Component {
       <div>
         <Card title={this.state.article.title}>
           <p>{this.state.article.content}</p>
+          <p>{this.state.article.date}</p>
         </Card>
         <CustomForm
           {...this.props}
